@@ -1,0 +1,12 @@
+psql postgres
+\i (arrastrar arquivo)
+\d //ver las tablas que hay
+\d nombreTabla // la "d" es de describe // describe los campos
+contl+l // limpia la consola
+insert into nombreTabla values(values) //los values van entre '' y separados por ,
+select * from nombreTabla;
+select atributos from nombreTabla; // muestra con proyeccion
+select * from nombreTabla where atributo='nombreAtributo';
+//sepueden pueden combinar de caulquier manera por orden, (select''from''where''=''and/or/if...;)
+//para un dato null no se pone =, se pone is null or is not null
+delete from zona; /// borra lasfilas de una tabla
