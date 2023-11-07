@@ -94,5 +94,90 @@ x6  luis	cuspedrinos
 x14 federico	cuspedrinos
 x15 leon	cuspedrinos
 
+1)amosar codigos,nomes e data dos partidos que se xogaron no estadio de codigo 'es1' 
+
+select codpar,nompar,data from partido where codest='es1'; 
+
+p1  cuspedrinoscroques	  02.03.2010 00:00:00
+p2  croquesreboludos	  02.06.2010 00:00:00
+p6  croquesreboludos	  07.09.2010 00:00:00
+
+2)amosar codigos,nomes e data dos partidos que se xogaron no estadio de nome 'playero' 
+select codpar,nompar,data from partido where codest=(select codest from estadio where nomest='playero'); 
+
+p1  cuspedrinoscroques	  02.03.2010 00:00:00
+p2  croquesreboludos	  02.06.2010 00:00:00
+p6  croquesreboludos	  07.09.2010 00:00:00
+
+3)amosar codigo ,nomes, datas e nomes dos estadios onde se celebraron os partidos con data posterior ao '13/6/2010'
+select codpar,nompar,data,nomest from partido,estadio where partido.codest=estadio.codest and data>'13/06/2010'; 
+
+p6  croquesreboludos	  07.09.2010 00:00:00 playero
+p5  gambusinoscuspedrinos 07.07.2010 00:00:00 plano
+p7  cuspedrinoscroques	  07.10.2010 00:00:00 aereo
+p4  croquesreboludos	  17.07.2010 00:00:00 aereo
+
+
+4)amosar codigo ,nomes , datas e nome dos estadios   onde se celebraron os partidos con data posterior ao '13/6/2010' no estadio de nome 'aereo'.
+select codpar,nompar,data,nomest from partido,estadio where partido.codest=estadio.codest and data>'13/06/2010' and nomest='aereo';
+p4  croquesreboludos	  17.07.2010 00:00:00 aereo
+p7  cuspedrinoscroques	  07.10.2010 00:00:00 aereo
+
+
+5) cantos partidos se xogaron no estadio 'es1'
+select count(*) from partido where partido.codest='es1';
+
+3
+
+6) cantos partidos se xogaron no estadio 'playero'
+select count(*) from partido where codest in(select codest from estadio where nomest='playero');
+
+3
+
+7) de cantos xogadores que posuen unha letra 'a' no seu nome non se sabe o seu salario 
+select count(*) from xogador where nomx like '%a%' and salario is null;
+
+	 2
+
+8) Amosar codigo e nome dos xogadores que posuan unha letra 'n' no seu nome ou pertencen ao equipo 'cuspedrinos'.
+select codx,nomx from xogador where nomx like '%n%' or codequ in(select codequ from equipo where nomequ='cuspedrinos');
+x1  luis
+x2  juan
+x5  juan
+x6  luis
+x9  bent
+x10 manuel
+x11 antonio
+x13 juan
+x14 federico
+x15 leon
+
+
+9) Amosar  nomes de equipo que adestraran no estadio 'es1'
+select nomequ from equipo where codequ in(select codequ from adestra where codest='es1') ;
+cuspedrinos
+gambusinos
+
+9) Amosar  nomes de equipo que adestraron no estadio de nome 'playero'
+select nomequ from equipo where codequ in(select codequ from adestra where codest in(select codest from estadio where nomest='playero')) ;
+cuspedrinos
+gambusinos
+
+10) amosar para cada codigo e nome xogador o codigo e nome dos partidos que xogou asi como con que posto xogou en cada partido  
+select xogador.codx,nomx,partido.codpar,nompar,posto from xogador,xoga,partido where xoga.codx=xogador.codx and partido.codpar in(select codpar from partido where partido.codpar=xoga.codpar); 
+
+x1  	luis		p1	     1
+x3  	pedro		p1	     5
+x5  	juan		p2	     1
+x6 	 luis		p2	     2
+x6  	luis		p1	     3
+x8  	pedro		p1	     6
+x9  	bent		p2	     3
+x10 	manuel		p3	     1
+x10 	manuel		p2	     4
+x11 	antonio		p2	     6
+x15 	leon		p1	     2
+
+
 
 
