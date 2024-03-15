@@ -20,6 +20,8 @@ mario
 
 3) indicar os tipos de augas que estarian indicadas para os pacientes que sufren de 'ril'
 indicar los tipos de aguas que estarían indicadas para los pacientes que sufren del 'ril'
+select tipo from augas where coda in(select coda from indicadas where codz in(select codz from zonas_corporais where nomz='ril'));
+
 
 bicarbonatadas
 oligometalicas
@@ -41,6 +43,7 @@ p5	     1
 
 9 rows selected.
 
+select codp,count(*) from pacientes group by codp;
 
 5) amosar de cantos minerais se compon cada tipo de auga
 mostrar de cuantos minerales se compone cada tipo de agua
@@ -52,10 +55,12 @@ sulfuradas		      4
 cloradas		      1
 
 
+
 6) amosar sen repeticion os codigos de medicos que cumplan que asignaron polo menos un balneario a un paciente crónico e prescribiron polo menos un balneario a un enfermo agudo (e dicir, que si asignaron un balneario a un paciente cronico pero non prescribiron ningun a un paciente agudo, ou viceversa,  non deben aparecer no listado)
 
 mostar sin repeticion los códigos de los médicos que cumplan que asignaron por lo menos un balneario a un enfermo agudo (es decir , que si asignaron un balneario a un paciente crónico pero no prescribieron ninguno a un paciente agudo , o viceversa , no deben aparecer en el listado)
-
+//revisar
+select codme from medicos where codme in(select codme from asignan where nif in(select nif from agudos) or nif in(select nif from cronicos));
 
 m4
 m1
@@ -85,7 +90,8 @@ mostar nif y nombre de todos los pacientes y además la población donde viven.
 367	  bea
 
 18 rows selected.
-
+//revisar
+select nif,pacientes.nomp,poboacions.nomp from pacientes, poboacions where pacientes.codp=poboacions.codp;
 
 8) (MODIFICADA) amosar o nome do balneario  onde supostamente se atopaba  o paciente agudo  de nif 3615 o 8/7/2020
 mostar el nombre del balneario donde supuestamente se encontraba el paciente agudo de nif 3615 el '8/7/2020'

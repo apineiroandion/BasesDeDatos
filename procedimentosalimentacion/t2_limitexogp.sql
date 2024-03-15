@@ -11,7 +11,7 @@ aceptada insercion porque o partido p3 ainda non tiña cinco xogadores
 
 
 
-drop trigger if exists t1_salariomaxp on xogador;
+drop trigger if exists t2_limitexogp on xoga;
 create or replace function ft2_limitexogp() returns trigger language plpgsql as $$
 declare
 contapartidos int;
