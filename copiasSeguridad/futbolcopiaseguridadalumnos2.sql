@@ -3,11 +3,15 @@ pg_dump -U postgres -Fp futbol2 > f2.dump --es una aplicacion externa que copia 
 exemplo de copia de seguridad e restauracion en formato de texto plano (SQL):
 
 11) facer a copia da base futbol2 nun nun ficheiro chamado f2.dump
-
+pg_dump -U postgres -Fp futbol2 > f2.dump 
 12) borrar a base futbol2
-
+dropdb -U postgres futbol2
 13)
 - crear a base,  e despois  recuperamos as tablas e datos  a partir da copia feita anteriormente
+create database futbol2;
+\i ...
+\c futbol2 userfu
+alter user userfu in database futbol2 set search_path to fu;
 
 - nos conectamos a ela como usuario postgres ou userfu: 
 
