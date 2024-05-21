@@ -84,7 +84,10 @@ grant insert(nomx, codx) on es3.xogador to u4;
 
 revoke insert(codx) on es3.xogador from u4; 
 
+-- o usuario u3 quere dara permiso de inserccion sobre a toab oa equipo do esquema es3 ao usuario u5 ca posibilidade de administralo
 
+u3
+grant insert on es3.equipo to u5 with grant option;
 
 
 
